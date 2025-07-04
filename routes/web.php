@@ -16,9 +16,13 @@ Route::get('/book', function () {
     ]);
 });
 
+use App\Http\Controllers\Api\AuthController;
+
 Route::get('/login', function () {
     return Inertia::render('Login');
 })->name('login');
+
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get('/admin', function () {
