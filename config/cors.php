@@ -1,32 +1,35 @@
 <?php
 
 return [
-    /*
-    |--------------------------------------------------------------------------
-    | Cross-Origin Resource Sharing (CORS) Configuration
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure your settings for cross-origin resource sharing
-    | or "CORS". This determines what cross-origin operations may execute
-    | in web browsers. You are free to adjust these settings as needed.
-    |
-    | To learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-    |
-    */
+    'paths' => [
+        'api/*', 
+        'sanctum/csrf-cookie',
+        'login',
+        'logout',
+        'admin/*'  // Add any admin routes
+    ],
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie', 'login', 'logout'],
+    'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
 
-    'allowed_methods' => ['*'],
-
-    'allowed_origins' => ['*'], // Or specify domains: ['https://yourfrontend.com']
+    'allowed_origins' => [
+        'https://nail-appointment.onrender.com',
+        'http://localhost:3000'  // For local development
+    ],
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    'allowed_headers' => [
+        'Content-Type',
+        'Authorization',
+        'X-Requested-With',
+        'X-Inertia'
+    ],
 
-    'exposed_headers' => [],
+    'exposed_headers' => [
+        'X-Inertia'
+    ],
 
-    'max_age' => 0,
+    'max_age' => 86400,  // 24 hours cache for preflight requests
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,  // Enable if using cookies/sessions
 ];
