@@ -26,7 +26,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': '/resources/js',
-      '~': '/resources', // Additional alias
+      '~': '/resources',
     },
   },
   server: {
@@ -34,8 +34,17 @@ export default defineConfig({
     port: process.env.PORT || 3000,
     hmr: {
       host: 'localhost',
+      protocol: 'ws',
     },
-    strictPort: true, // Critical for Render
+    strictPort: true,
+  },
+  preview: {
+    host: '0.0.0.0',
+    port: process.env.PORT || 3000,
+    allowedHosts: [
+      'nail-appointment.onrender.com',
+      'localhost'
+    ]
   },
   build: {
     manifest: true,
@@ -47,6 +56,6 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 1600, // For larger apps
-},
+    chunkSizeWarningLimit: 1600,
+  }
 });
